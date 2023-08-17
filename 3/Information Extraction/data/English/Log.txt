@@ -1,0 +1,660 @@
+nohup: ignoring input
+
+#### TEST MODE
+
+Open 2023-06-07_17-04-18.log fail!
+	[2023-06-07 17:04:18] ---- Main      	> Init output
+	[2023-06-07 17:04:18] ---- Dao       	> Database link successfully.
+	[2023-06-07 17:04:18] ---- Main      	> Init dao layer
+	[2023-06-07 17:04:18] ---- Dao       	> select * from charges
+	[2023-06-07 17:04:18] ---- Dao       	> update charges set state=? where id=?  REST 1
+	[2023-06-07 17:04:18] ---- Dao       	> update charges set state=? where id=?  REST 2
+	[2023-06-07 17:04:18] ---- Dao       	> update charges set state=? where id=?  REST 3
+	[2023-06-07 17:04:18] ---- Dao       	> update charges set state=? where id=?  REST 4
+	[2023-06-07 17:04:18] ---- Dao       	> update charges set state=? where id=?  REST 5
+	[2023-06-07 17:04:18] ---- Service   	> ChargeMaster init success
+	[2023-06-07 17:04:18] ---- Main      	> Init service-system layer
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 6}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 0 state = REST orders =
+--id = 4 size = 0 state = REST orders =
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:04:37] ---- Middleware	> Authentic success. ID = 2
+	[2023-06-07 17:04:37] ---- Controller	> Body: user_id=2
+	[2023-06-07 17:04:37] ---- Dao       	> insert into orders (user_id, car_id, mode, apply_kwh, charge_kwh, state, charge_price, service_price, fee, create_time, dispatch_time, charge_id, start_time, finish_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	[2023-06-07 17:04:37] ---- Service   	> Order create success
+	[2023-06-07 17:04:37] ---- Dao       	> select * from orders where user_id=? and create_time=? 2 2023-06-07 17:04:37
+	[2023-06-07 17:04:37] ---- Dao       	> select * from cars where id=? and user_id=? 1 2
+	[2023-06-07 17:04:37] ---- Controller	> Order create success
+[GIN] 2023/06/07 - 17:04:37 | 200 |    5.057984ms |   223.72.44.239 | POST     "/client/index/order"
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set state=? where id=?  CHARGING 15
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set dispatch_time=? where id=?  2023-06-07 17:04:38 15
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:04:38 15
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set charge_id=? where id=?  3 15
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set state=? where id=?  CHARGING 15
+	[2023-06-07 17:04:38] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:04:38 15
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 5}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0 CHARGING 0.7 0.8 0 0 0 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 101.402435}
+--id = 4 size = 0 state = REST orders =
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:04:39] ---- Dao       	> update cars set power_current=? where id=?  101.416321 1
+	[2023-06-07 17:04:39] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:04:39] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:04:39 | 200 |     303.548µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:04:40] ---- Dao       	> update cars set power_current=? where id=?  101.430206 1
+	[2023-06-07 17:04:41] ---- Dao       	> update cars set power_current=? where id=?  101.444092 1
+	[2023-06-07 17:04:42] ---- Dao       	> update cars set power_current=? where id=?  101.457977 1
+	[2023-06-07 17:04:42] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:04:42] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:04:42 | 200 |     135.908µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:04:43] ---- Dao       	> update cars set power_current=? where id=?  101.471863 1
+	[2023-06-07 17:04:44] ---- Dao       	> update cars set power_current=? where id=?  101.485748 1
+	[2023-06-07 17:04:45] ---- Dao       	> update cars set power_current=? where id=?  101.499634 1
+	[2023-06-07 17:04:46] ---- Dao       	> update cars set power_current=? where id=?  101.513519 1
+	[2023-06-07 17:04:47] ---- Dao       	> update cars set power_current=? where id=?  101.527405 1
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 5}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.125 CHARGING 0.7 0.8 0.087500006 0.1 0.18749999 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 101.527405}
+--id = 4 size = 0 state = REST orders =
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:04:48] ---- Dao       	> update cars set power_current=? where id=?  101.541290 1
+	[2023-06-07 17:04:49] ---- Dao       	> update cars set power_current=? where id=?  101.555176 1
+	[2023-06-07 17:04:50] ---- Dao       	> update cars set power_current=? where id=?  101.569061 1
+	[2023-06-07 17:04:50] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:04:50] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:04:50 | 200 |     131.517µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:04:51] ---- Dao       	> update cars set power_current=? where id=?  101.582947 1
+	[2023-06-07 17:04:52] ---- Dao       	> update cars set power_current=? where id=?  101.596832 1
+	[2023-06-07 17:04:53] ---- Dao       	> update cars set power_current=? where id=?  101.610718 1
+	[2023-06-07 17:04:54] ---- Dao       	> update cars set power_current=? where id=?  101.624603 1
+	[2023-06-07 17:04:55] ---- Dao       	> update cars set power_current=? where id=?  101.638489 1
+	[2023-06-07 17:04:56] ---- Dao       	> update cars set power_current=? where id=?  101.652374 1
+	[2023-06-07 17:04:57] ---- Dao       	> update cars set power_current=? where id=?  101.666260 1
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 5}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.26388896 CHARGING 0.7 0.8 0.18472221 0.21111111 0.39583337 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 101.66626}
+--id = 4 size = 0 state = REST orders =
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:04:58] ---- Dao       	> update cars set power_current=? where id=?  101.680145 1
+	[2023-06-07 17:04:59] ---- Dao       	> update cars set power_current=? where id=?  101.694031 1
+	[2023-06-07 17:05:00] ---- Dao       	> update cars set power_current=? where id=?  101.707916 1
+	[2023-06-07 17:05:01] ---- Dao       	> update cars set power_current=? where id=?  101.721802 1
+	[2023-06-07 17:05:02] ---- Dao       	> update cars set power_current=? where id=?  101.735687 1
+	[2023-06-07 17:05:03] ---- Dao       	> update cars set power_current=? where id=?  101.749573 1
+	[2023-06-07 17:05:04] ---- Dao       	> update cars set power_current=? where id=?  101.763458 1
+	[2023-06-07 17:05:05] ---- Dao       	> update cars set power_current=? where id=?  101.777344 1
+	[2023-06-07 17:05:06] ---- Dao       	> update cars set power_current=? where id=?  101.791229 1
+	[2023-06-07 17:05:06] ---- Middleware	> Authentic success. ID = 2
+	[2023-06-07 17:05:06] ---- Controller	> Body: user_id=2
+	[2023-06-07 17:05:06] ---- Dao       	> insert into orders (user_id, car_id, mode, apply_kwh, charge_kwh, state, charge_price, service_price, fee, create_time, dispatch_time, charge_id, start_time, finish_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	[2023-06-07 17:05:06] ---- Service   	> Order create success
+	[2023-06-07 17:05:06] ---- Dao       	> select * from orders where user_id=? and create_time=? 2 2023-06-07 17:05:06
+	[2023-06-07 17:05:06] ---- Dao       	> select * from cars where id=? and user_id=? 2 2
+	[2023-06-07 17:05:06] ---- Controller	> Order create success
+[GIN] 2023/06/07 - 17:05:06 | 200 |    4.185662ms |   223.72.44.239 | POST     "/client/index/order"
+	[2023-06-07 17:05:07] ---- Dao       	> update cars set power_current=? where id=?  101.805115 1
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set state=? where id=?  CHARGING 16
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set dispatch_time=? where id=?  2023-06-07 17:05:08 16
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set state=? where id=?  CHARGING 16
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:05:08 16
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:05:08 16
+	[2023-06-07 17:05:08] ---- Dao       	> update orders set charge_id=? where id=?  4 16
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.4027779 CHARGING 0.7 0.8 0.28194445 0.32222223 0.6041666 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 101.805115}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0 CHARGING 0.7 0.8 0 0 0 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.110596}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:08] ---- Dao       	> update cars set power_current=? where id=?  101.819000 1
+	[2023-06-07 17:05:09] ---- Dao       	> update cars set power_current=? where id=?  102.124481 2
+	[2023-06-07 17:05:09] ---- Dao       	> update cars set power_current=? where id=?  101.832886 1
+	[2023-06-07 17:05:10] ---- Dao       	> update cars set power_current=? where id=?  102.138367 2
+	[2023-06-07 17:05:10] ---- Dao       	> update cars set power_current=? where id=?  101.846771 1
+	[2023-06-07 17:05:10] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:10] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:10 | 200 |     119.647µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:11] ---- Dao       	> update cars set power_current=? where id=?  102.152252 2
+	[2023-06-07 17:05:11] ---- Dao       	> update cars set power_current=? where id=?  101.860657 1
+	[2023-06-07 17:05:12] ---- Dao       	> update cars set power_current=? where id=?  102.166138 2
+	[2023-06-07 17:05:12] ---- Dao       	> update cars set power_current=? where id=?  101.874542 1
+	[2023-06-07 17:05:13] ---- Dao       	> update cars set power_current=? where id=?  102.180023 2
+	[2023-06-07 17:05:13] ---- Dao       	> update cars set power_current=? where id=?  101.888428 1
+	[2023-06-07 17:05:14] ---- Dao       	> update cars set power_current=? where id=?  102.193909 2
+	[2023-06-07 17:05:14] ---- Dao       	> update cars set power_current=? where id=?  101.902313 1
+	[2023-06-07 17:05:15] ---- Dao       	> update cars set power_current=? where id=?  102.207794 2
+	[2023-06-07 17:05:15] ---- Dao       	> update cars set power_current=? where id=?  101.916199 1
+	[2023-06-07 17:05:15] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:15] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:15 | 200 |     130.436µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:16] ---- Dao       	> update cars set power_current=? where id=?  102.221680 2
+	[2023-06-07 17:05:16] ---- Dao       	> update cars set power_current=? where id=?  101.930084 1
+	[2023-06-07 17:05:17] ---- Dao       	> update cars set power_current=? where id=?  102.235565 2
+	[2023-06-07 17:05:17] ---- Dao       	> update cars set power_current=? where id=?  101.943970 1
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.54166687 CHARGING 0.7 0.8 0.37916678 0.43333334 0.81249976 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 101.94397}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.125 CHARGING 0.7 0.8 0.087500006 0.1 0.18749999 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.235565}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:18] ---- Dao       	> update cars set power_current=? where id=?  102.249451 2
+	[2023-06-07 17:05:18] ---- Dao       	> update cars set power_current=? where id=?  101.957855 1
+	[2023-06-07 17:05:19] ---- Dao       	> update cars set power_current=? where id=?  102.263336 2
+	[2023-06-07 17:05:19] ---- Dao       	> update cars set power_current=? where id=?  101.971741 1
+	[2023-06-07 17:05:20] ---- Dao       	> update cars set power_current=? where id=?  102.277222 2
+	[2023-06-07 17:05:20] ---- Dao       	> update cars set power_current=? where id=?  101.985626 1
+	[2023-06-07 17:05:21] ---- Dao       	> update cars set power_current=? where id=?  102.291107 2
+	[2023-06-07 17:05:21] ---- Dao       	> update cars set power_current=? where id=?  101.999512 1
+	[2023-06-07 17:05:22] ---- Dao       	> update cars set power_current=? where id=?  102.304993 2
+	[2023-06-07 17:05:22] ---- Dao       	> update cars set power_current=? where id=?  102.013397 1
+	[2023-06-07 17:05:23] ---- Dao       	> update cars set power_current=? where id=?  102.318878 2
+	[2023-06-07 17:05:23] ---- Dao       	> update cars set power_current=? where id=?  102.027283 1
+	[2023-06-07 17:05:24] ---- Dao       	> update cars set power_current=? where id=?  102.332764 2
+	[2023-06-07 17:05:24] ---- Dao       	> update cars set power_current=? where id=?  102.041168 1
+	[2023-06-07 17:05:25] ---- Dao       	> update cars set power_current=? where id=?  102.346649 2
+	[2023-06-07 17:05:25] ---- Dao       	> update cars set power_current=? where id=?  102.055054 1
+	[2023-06-07 17:05:26] ---- Dao       	> update cars set power_current=? where id=?  102.360535 2
+	[2023-06-07 17:05:26] ---- Dao       	> update cars set power_current=? where id=?  102.068939 1
+	[2023-06-07 17:05:27] ---- Dao       	> update cars set power_current=? where id=?  102.374420 2
+	[2023-06-07 17:05:27] ---- Dao       	> update cars set power_current=? where id=?  102.082825 1
+
+Control {{0 0} [1 2] 4 4 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 0 state = REST orders =
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.6805558 CHARGING 0.7 0.8 0.4763891 0.54444456 1.0208329 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.082825}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.26388896 CHARGING 0.7 0.8 0.18472221 0.21111111 0.39583337 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.37442}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:28] ---- Dao       	> update cars set power_current=? where id=?  102.388306 2
+	[2023-06-07 17:05:28] ---- Dao       	> update cars set power_current=? where id=?  102.096710 1
+	[2023-06-07 17:05:29] ---- Dao       	> update cars set power_current=? where id=?  102.402191 2
+	[2023-06-07 17:05:29] ---- Dao       	> update cars set power_current=? where id=?  102.110596 1
+	[2023-06-07 17:05:30] ---- Dao       	> update cars set power_current=? where id=?  102.416077 2
+	[2023-06-07 17:05:30] ---- Dao       	> update cars set power_current=? where id=?  102.124481 1
+	[2023-06-07 17:05:31] ---- Dao       	> update cars set power_current=? where id=?  102.429962 2
+	[2023-06-07 17:05:31] ---- Dao       	> update cars set power_current=? where id=?  102.138367 1
+	[2023-06-07 17:05:32] ---- Dao       	> update cars set power_current=? where id=?  102.443848 2
+	[2023-06-07 17:05:32] ---- Dao       	> update cars set power_current=? where id=?  102.152252 1
+	[2023-06-07 17:05:33] ---- Dao       	> update cars set power_current=? where id=?  102.457733 2
+	[2023-06-07 17:05:33] ---- Dao       	> update cars set power_current=? where id=?  102.166138 1
+	[2023-06-07 17:05:34] ---- Dao       	> update cars set power_current=? where id=?  102.471619 2
+	[2023-06-07 17:05:34] ---- Dao       	> update cars set power_current=? where id=?  102.180023 1
+	[2023-06-07 17:05:35] ---- Dao       	> update cars set power_current=? where id=?  102.485504 2
+	[2023-06-07 17:05:35] ---- Dao       	> update cars set power_current=? where id=?  102.193909 1
+	[2023-06-07 17:05:36] ---- Dao       	> update cars set power_current=? where id=?  102.499390 2
+	[2023-06-07 17:05:36] ---- Dao       	> update cars set power_current=? where id=?  102.207794 1
+	[2023-06-07 17:05:37] ---- Middleware	> Authentic success. ID = 2
+	[2023-06-07 17:05:37] ---- Controller	> Body: user_id=2
+	[2023-06-07 17:05:37] ---- Dao       	> insert into orders (user_id, car_id, mode, apply_kwh, charge_kwh, state, charge_price, service_price, fee, create_time, dispatch_time, charge_id, start_time, finish_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	[2023-06-07 17:05:37] ---- Service   	> Order create success
+	[2023-06-07 17:05:37] ---- Dao       	> select * from orders where user_id=? and create_time=? 2 2023-06-07 17:05:37
+	[2023-06-07 17:05:37] ---- Dao       	> select * from cars where id=? and user_id=? 3 2
+	[2023-06-07 17:05:37] ---- Controller	> Order create success
+[GIN] 2023/06/07 - 17:05:37 | 200 |    4.833688ms |   223.72.44.239 | POST     "/client/index/order"
+	[2023-06-07 17:05:37] ---- Dao       	> update cars set power_current=? where id=?  102.513275 2
+	[2023-06-07 17:05:37] ---- Dao       	> update cars set power_current=? where id=?  102.221680 1
+	[2023-06-07 17:05:38] ---- Dao       	> update orders set state=? where id=?  CHARGING 17
+	[2023-06-07 17:05:38] ---- Dao       	> update orders set dispatch_time=? where id=?  2023-06-07 17:05:38 17
+	[2023-06-07 17:05:38] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:05:38 17
+	[2023-06-07 17:05:38] ---- Dao       	> update orders set charge_id=? where id=?  1 17
+
+Control {{0 0} [1 2] 4 3 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = REST orders =
+   0 {17 2 3 F 100 15 0 CHARGING 0.7 0.8 0 0 0 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:38 xxxx-xx-xx xx:xx:xx 2 0.00027777778 3号 0 103.02787}
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.8194448 CHARGING 0.7 0.8 0.57361144 0.65555596 1.2291666 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.22168}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.4027779 CHARGING 0.7 0.8 0.28194445 0.32222223 0.6041666 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.513275}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:38] ---- Dao       	> update cars set power_current=? where id=?  102.527161 2
+	[2023-06-07 17:05:38] ---- Dao       	> update cars set power_current=? where id=?  102.235565 1
+	[2023-06-07 17:05:39] ---- Dao       	> update orders set state=? where id=?  CHARGING 17
+	[2023-06-07 17:05:39] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:05:39 17
+	[2023-06-07 17:05:39] ---- Dao       	> update cars set power_current=? where id=?  102.541046 2
+	[2023-06-07 17:05:39] ---- Dao       	> update cars set power_current=? where id=?  102.249451 1
+	[2023-06-07 17:05:40] ---- Dao       	> update cars set power_current=? where id=?  103.055649 3
+	[2023-06-07 17:05:40] ---- Dao       	> update cars set power_current=? where id=?  102.554932 2
+	[2023-06-07 17:05:40] ---- Dao       	> update cars set power_current=? where id=?  102.263336 1
+	[2023-06-07 17:05:40] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:40] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:40 | 200 |     153.865µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:41] ---- Dao       	> update cars set power_current=? where id=?  103.083427 3
+	[2023-06-07 17:05:41] ---- Dao       	> update cars set power_current=? where id=?  102.568817 2
+	[2023-06-07 17:05:41] ---- Dao       	> update cars set power_current=? where id=?  102.277222 1
+	[2023-06-07 17:05:42] ---- Dao       	> update cars set power_current=? where id=?  103.111206 3
+	[2023-06-07 17:05:42] ---- Dao       	> update cars set power_current=? where id=?  102.582703 2
+	[2023-06-07 17:05:42] ---- Dao       	> update cars set power_current=? where id=?  102.291107 1
+	[2023-06-07 17:05:43] ---- Dao       	> update cars set power_current=? where id=?  103.138985 3
+	[2023-06-07 17:05:43] ---- Dao       	> update cars set power_current=? where id=?  102.596588 2
+	[2023-06-07 17:05:43] ---- Dao       	> update cars set power_current=? where id=?  102.304993 1
+	[2023-06-07 17:05:44] ---- Dao       	> update cars set power_current=? where id=?  103.166763 3
+	[2023-06-07 17:05:44] ---- Dao       	> update cars set power_current=? where id=?  102.610474 2
+	[2023-06-07 17:05:44] ---- Dao       	> update cars set power_current=? where id=?  102.318878 1
+	[2023-06-07 17:05:45] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:45] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:45 | 200 |     185.661µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:45] ---- Dao       	> update cars set power_current=? where id=?  103.194542 3
+	[2023-06-07 17:05:45] ---- Dao       	> update cars set power_current=? where id=?  102.624359 2
+	[2023-06-07 17:05:45] ---- Dao       	> update cars set power_current=? where id=?  102.332764 1
+	[2023-06-07 17:05:46] ---- Dao       	> update cars set power_current=? where id=?  103.222321 3
+	[2023-06-07 17:05:46] ---- Dao       	> update cars set power_current=? where id=?  102.638245 2
+	[2023-06-07 17:05:46] ---- Dao       	> update cars set power_current=? where id=?  102.346649 1
+	[2023-06-07 17:05:47] ---- Dao       	> update cars set power_current=? where id=?  103.250099 3
+	[2023-06-07 17:05:47] ---- Dao       	> update cars set power_current=? where id=?  102.652130 2
+	[2023-06-07 17:05:47] ---- Dao       	> update cars set power_current=? where id=?  102.360535 1
+	[2023-06-07 17:05:47] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:47] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:47 | 200 |     131.376µs |       127.0.0.1 | GET      "/admin/index/manage"
+
+Control {{0 0} [1 2] 4 3 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 0.22222222 CHARGING 0.7 0.8 0.15555556 0.17777778 0.3333333 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 103.2501}
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 0.95833373 CHARGING 0.7 0.8 0.67083377 0.76666737 1.4375004 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.360535}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.54166687 CHARGING 0.7 0.8 0.37916678 0.43333334 0.81249976 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.65213}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:48] ---- Dao       	> update cars set power_current=? where id=?  103.277878 3
+	[2023-06-07 17:05:48] ---- Dao       	> update cars set power_current=? where id=?  102.666016 2
+	[2023-06-07 17:05:48] ---- Dao       	> update cars set power_current=? where id=?  102.374420 1
+	[2023-06-07 17:05:49] ---- Dao       	> update cars set power_current=? where id=?  103.305656 3
+	[2023-06-07 17:05:49] ---- Dao       	> update cars set power_current=? where id=?  102.679901 2
+	[2023-06-07 17:05:49] ---- Dao       	> update cars set power_current=? where id=?  102.388306 1
+	[2023-06-07 17:05:50] ---- Dao       	> update cars set power_current=? where id=?  103.333435 3
+	[2023-06-07 17:05:50] ---- Dao       	> update cars set power_current=? where id=?  102.693787 2
+	[2023-06-07 17:05:50] ---- Dao       	> update cars set power_current=? where id=?  102.402191 1
+	[2023-06-07 17:05:51] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:51] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:51 | 200 |     135.786µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:51] ---- Dao       	> update cars set power_current=? where id=?  103.361214 3
+	[2023-06-07 17:05:51] ---- Dao       	> update cars set power_current=? where id=?  102.707672 2
+	[2023-06-07 17:05:51] ---- Dao       	> update cars set power_current=? where id=?  102.416077 1
+	[2023-06-07 17:05:52] ---- Dao       	> update cars set power_current=? where id=?  103.388992 3
+	[2023-06-07 17:05:52] ---- Dao       	> update cars set power_current=? where id=?  102.721558 2
+	[2023-06-07 17:05:52] ---- Dao       	> update cars set power_current=? where id=?  102.429962 1
+	[2023-06-07 17:05:53] ---- Dao       	> update cars set power_current=? where id=?  103.416771 3
+	[2023-06-07 17:05:53] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:05:53] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:05:53 | 200 |     128.901µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:05:53] ---- Dao       	> update cars set power_current=? where id=?  102.735443 2
+	[2023-06-07 17:05:53] ---- Dao       	> update cars set power_current=? where id=?  102.443848 1
+	[2023-06-07 17:05:54] ---- Dao       	> update cars set power_current=? where id=?  103.444550 3
+	[2023-06-07 17:05:54] ---- Dao       	> update cars set power_current=? where id=?  102.749329 2
+	[2023-06-07 17:05:54] ---- Dao       	> update cars set power_current=? where id=?  102.457733 1
+	[2023-06-07 17:05:55] ---- Dao       	> update cars set power_current=? where id=?  103.472328 3
+	[2023-06-07 17:05:55] ---- Dao       	> update cars set power_current=? where id=?  102.763214 2
+	[2023-06-07 17:05:55] ---- Dao       	> update cars set power_current=? where id=?  102.471619 1
+	[2023-06-07 17:05:56] ---- Dao       	> update cars set power_current=? where id=?  103.500107 3
+	[2023-06-07 17:05:56] ---- Dao       	> update cars set power_current=? where id=?  102.777100 2
+	[2023-06-07 17:05:56] ---- Dao       	> update cars set power_current=? where id=?  102.485504 1
+	[2023-06-07 17:05:57] ---- Dao       	> update cars set power_current=? where id=?  103.527885 3
+	[2023-06-07 17:05:57] ---- Dao       	> update cars set power_current=? where id=?  102.790985 2
+	[2023-06-07 17:05:57] ---- Dao       	> update cars set power_current=? where id=?  102.499390 1
+
+Control {{0 0} [1 2] 4 3 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 0.5000001 CHARGING 0.7 0.8 0.35 0.4 0.75000006 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 103.527885}
+--id = 2 size = 0 state = REST orders =
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 1.0972222 CHARGING 0.7 0.8 0.7680561 0.87777877 1.6458341 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.49939}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.6805558 CHARGING 0.7 0.8 0.4763891 0.54444456 1.0208329 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.790985}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:05:58] ---- Dao       	> update cars set power_current=? where id=?  103.555664 3
+	[2023-06-07 17:05:58] ---- Dao       	> update cars set power_current=? where id=?  102.804871 2
+	[2023-06-07 17:05:58] ---- Dao       	> update cars set power_current=? where id=?  102.513275 1
+	[2023-06-07 17:05:59] ---- Dao       	> update cars set power_current=? where id=?  103.583443 3
+	[2023-06-07 17:05:59] ---- Dao       	> update cars set power_current=? where id=?  102.818756 2
+	[2023-06-07 17:05:59] ---- Dao       	> update cars set power_current=? where id=?  102.527161 1
+	[2023-06-07 17:06:00] ---- Dao       	> update cars set power_current=? where id=?  103.611221 3
+	[2023-06-07 17:06:00] ---- Dao       	> update cars set power_current=? where id=?  102.832642 2
+	[2023-06-07 17:06:00] ---- Dao       	> update cars set power_current=? where id=?  102.541046 1
+	[2023-06-07 17:06:01] ---- Dao       	> update cars set power_current=? where id=?  103.639000 3
+	[2023-06-07 17:06:01] ---- Dao       	> update cars set power_current=? where id=?  102.846527 2
+	[2023-06-07 17:06:01] ---- Dao       	> update cars set power_current=? where id=?  102.554932 1
+	[2023-06-07 17:06:02] ---- Dao       	> update cars set power_current=? where id=?  103.666779 3
+	[2023-06-07 17:06:02] ---- Dao       	> update cars set power_current=? where id=?  102.860413 2
+	[2023-06-07 17:06:02] ---- Dao       	> update cars set power_current=? where id=?  102.568817 1
+	[2023-06-07 17:06:03] ---- Dao       	> update cars set power_current=? where id=?  103.694557 3
+	[2023-06-07 17:06:03] ---- Dao       	> update cars set power_current=? where id=?  102.874298 2
+	[2023-06-07 17:06:03] ---- Dao       	> update cars set power_current=? where id=?  102.582703 1
+	[2023-06-07 17:06:04] ---- Dao       	> update cars set power_current=? where id=?  103.722336 3
+	[2023-06-07 17:06:04] ---- Dao       	> update cars set power_current=? where id=?  102.888184 2
+	[2023-06-07 17:06:04] ---- Dao       	> update cars set power_current=? where id=?  102.596588 1
+	[2023-06-07 17:06:05] ---- Dao       	> update cars set power_current=? where id=?  103.750114 3
+	[2023-06-07 17:06:05] ---- Dao       	> update cars set power_current=? where id=?  102.902069 2
+	[2023-06-07 17:06:05] ---- Dao       	> update cars set power_current=? where id=?  102.610474 1
+	[2023-06-07 17:06:06] ---- Dao       	> update cars set power_current=? where id=?  103.777893 3
+	[2023-06-07 17:06:06] ---- Dao       	> update cars set power_current=? where id=?  102.915955 2
+	[2023-06-07 17:06:06] ---- Dao       	> update cars set power_current=? where id=?  102.624359 1
+	[2023-06-07 17:06:06] ---- Middleware	> Authentic success. ID = 2
+	[2023-06-07 17:06:06] ---- Controller	> Body: user_id=2
+	[2023-06-07 17:06:06] ---- Dao       	> insert into orders (user_id, car_id, mode, apply_kwh, charge_kwh, state, charge_price, service_price, fee, create_time, dispatch_time, charge_id, start_time, finish_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	[2023-06-07 17:06:06] ---- Service   	> Order create success
+	[2023-06-07 17:06:06] ---- Dao       	> select * from orders where user_id=? and create_time=? 2 2023-06-07 17:06:06
+	[2023-06-07 17:06:06] ---- Dao       	> select * from cars where id=? and user_id=? 4 2
+	[2023-06-07 17:06:06] ---- Controller	> Order create success
+[GIN] 2023/06/07 - 17:06:06 | 200 |    4.872667ms |   223.72.44.239 | POST     "/client/index/order"
+	[2023-06-07 17:06:07] ---- Dao       	> update cars set power_current=? where id=?  103.805672 3
+	[2023-06-07 17:06:07] ---- Dao       	> update cars set power_current=? where id=?  102.929840 2
+	[2023-06-07 17:06:07] ---- Dao       	> update cars set power_current=? where id=?  102.638245 1
+	[2023-06-07 17:06:08] ---- Dao       	> update orders set state=? where id=?  CHARGING 18
+	[2023-06-07 17:06:08] ---- Dao       	> update orders set dispatch_time=? where id=?  2023-06-07 17:06:08 18
+	[2023-06-07 17:06:08] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:06:08 18
+	[2023-06-07 17:06:08] ---- Dao       	> update orders set charge_id=? where id=?  2 18
+
+Control {{0 0} [1 2] 4 2 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 0.777778 CHARGING 0.7 0.8 0.54444444 0.62222224 1.1666666 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 103.80567}
+--id = 2 size = 1 state = REST orders =
+   0 {18 2 4 F 100 22.5 0 CHARGING 0.7 0.8 0 0 0 2023-06-07 17:06:06 2023-06-07 17:06:08 2 2023-06-07 17:06:08 xxxx-xx-xx xx:xx:xx 3 0.00055555557 4号 0 104.527916}
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 1.2361106 CHARGING 0.7 0.8 0.8652784 0.9888902 1.8541678 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.638245}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.8194448 CHARGING 0.7 0.8 0.57361144 0.65555596 1.2291666 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 102.92984}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:06:08] ---- Dao       	> update cars set power_current=? where id=?  103.833450 3
+	[2023-06-07 17:06:08] ---- Dao       	> update cars set power_current=? where id=?  102.943726 2
+	[2023-06-07 17:06:08] ---- Dao       	> update cars set power_current=? where id=?  102.652130 1
+	[2023-06-07 17:06:09] ---- Dao       	> update orders set state=? where id=?  CHARGING 18
+	[2023-06-07 17:06:09] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:06:09 18
+	[2023-06-07 17:06:09] ---- Dao       	> update cars set power_current=? where id=?  103.861229 3
+	[2023-06-07 17:06:09] ---- Dao       	> update cars set power_current=? where id=?  102.957611 2
+	[2023-06-07 17:06:09] ---- Dao       	> update cars set power_current=? where id=?  102.666016 1
+	[2023-06-07 17:06:10] ---- Dao       	> update cars set power_current=? where id=?  104.555695 4
+	[2023-06-07 17:06:10] ---- Dao       	> update cars set power_current=? where id=?  103.889008 3
+	[2023-06-07 17:06:10] ---- Dao       	> update cars set power_current=? where id=?  102.971497 2
+	[2023-06-07 17:06:10] ---- Dao       	> update cars set power_current=? where id=?  102.679901 1
+	[2023-06-07 17:06:10] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:10] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:10 | 200 |     135.426µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:11] ---- Dao       	> update cars set power_current=? where id=?  104.583473 4
+	[2023-06-07 17:06:11] ---- Dao       	> update cars set power_current=? where id=?  103.916786 3
+	[2023-06-07 17:06:11] ---- Dao       	> update cars set power_current=? where id=?  102.985382 2
+	[2023-06-07 17:06:11] ---- Dao       	> update cars set power_current=? where id=?  102.693787 1
+	[2023-06-07 17:06:12] ---- Dao       	> update cars set power_current=? where id=?  104.611252 4
+	[2023-06-07 17:06:12] ---- Dao       	> update cars set power_current=? where id=?  103.944565 3
+	[2023-06-07 17:06:12] ---- Dao       	> update cars set power_current=? where id=?  102.999268 2
+	[2023-06-07 17:06:12] ---- Dao       	> update cars set power_current=? where id=?  102.707672 1
+	[2023-06-07 17:06:13] ---- Dao       	> update cars set power_current=? where id=?  104.639030 4
+	[2023-06-07 17:06:13] ---- Dao       	> update cars set power_current=? where id=?  103.972343 3
+	[2023-06-07 17:06:13] ---- Dao       	> update cars set power_current=? where id=?  103.013153 2
+	[2023-06-07 17:06:13] ---- Dao       	> update cars set power_current=? where id=?  102.721558 1
+	[2023-06-07 17:06:14] ---- Dao       	> update cars set power_current=? where id=?  104.666809 4
+	[2023-06-07 17:06:14] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:14] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:14 | 200 |      180.97µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:14] ---- Dao       	> update cars set power_current=? where id=?  104.000122 3
+	[2023-06-07 17:06:14] ---- Dao       	> update cars set power_current=? where id=?  103.027039 2
+	[2023-06-07 17:06:14] ---- Dao       	> update cars set power_current=? where id=?  102.735443 1
+	[2023-06-07 17:06:15] ---- Dao       	> update cars set power_current=? where id=?  104.694588 4
+	[2023-06-07 17:06:15] ---- Dao       	> update cars set power_current=? where id=?  104.027901 3
+	[2023-06-07 17:06:15] ---- Dao       	> update cars set power_current=? where id=?  103.040924 2
+	[2023-06-07 17:06:15] ---- Dao       	> update cars set power_current=? where id=?  102.749329 1
+	[2023-06-07 17:06:16] ---- Dao       	> update cars set power_current=? where id=?  104.722366 4
+	[2023-06-07 17:06:16] ---- Dao       	> update cars set power_current=? where id=?  104.055679 3
+	[2023-06-07 17:06:16] ---- Dao       	> update cars set power_current=? where id=?  103.054810 2
+	[2023-06-07 17:06:16] ---- Dao       	> update cars set power_current=? where id=?  102.763214 1
+	[2023-06-07 17:06:17] ---- Dao       	> update cars set power_current=? where id=?  104.750145 4
+	[2023-06-07 17:06:17] ---- Dao       	> update cars set power_current=? where id=?  104.083458 3
+	[2023-06-07 17:06:17] ---- Dao       	> update cars set power_current=? where id=?  103.068695 2
+	[2023-06-07 17:06:17] ---- Dao       	> update cars set power_current=? where id=?  102.777100 1
+
+Control {{0 0} [1 2] 4 2 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 1.0555559 CHARGING 0.7 0.8 0.7388891 0.84444445 1.5833329 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 104.08346}
+--id = 2 size = 1 state = WORK orders =
+   0 {18 2 4 F 100 22.5 0.22222222 CHARGING 0.7 0.8 0.15555556 0.17777778 0.3333333 2023-06-07 17:06:06 2023-06-07 17:06:08 2 2023-06-07 17:06:09 xxxx-xx-xx xx:xx:xx 3 0.00083333335 4号 0 104.750145}
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 1.3749989 CHARGING 0.7 0.8 0.96250075 1.1000016 2.0625012 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.7771}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 0.95833373 CHARGING 0.7 0.8 0.67083377 0.76666737 1.4375004 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 103.068695}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:06:18] ---- Dao       	> update cars set power_current=? where id=?  104.777924 4
+	[2023-06-07 17:06:18] ---- Dao       	> update cars set power_current=? where id=?  104.111237 3
+	[2023-06-07 17:06:18] ---- Dao       	> update cars set power_current=? where id=?  103.082581 2
+	[2023-06-07 17:06:18] ---- Dao       	> update cars set power_current=? where id=?  102.790985 1
+	[2023-06-07 17:06:18] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:18] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:18 | 200 |     133.662µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:19] ---- Dao       	> update cars set power_current=? where id=?  104.805702 4
+	[2023-06-07 17:06:19] ---- Dao       	> update cars set power_current=? where id=?  104.139015 3
+	[2023-06-07 17:06:19] ---- Dao       	> update cars set power_current=? where id=?  103.096466 2
+	[2023-06-07 17:06:19] ---- Dao       	> update cars set power_current=? where id=?  102.804871 1
+	[2023-06-07 17:06:20] ---- Dao       	> update cars set power_current=? where id=?  104.833481 4
+	[2023-06-07 17:06:20] ---- Dao       	> update cars set power_current=? where id=?  104.166794 3
+	[2023-06-07 17:06:20] ---- Dao       	> update cars set power_current=? where id=?  103.110352 2
+	[2023-06-07 17:06:20] ---- Dao       	> update cars set power_current=? where id=?  102.818756 1
+	[2023-06-07 17:06:21] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:21] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:21 | 200 |     136.097µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:21] ---- Dao       	> update cars set power_current=? where id=?  104.861259 4
+	[2023-06-07 17:06:21] ---- Dao       	> update cars set power_current=? where id=?  104.194572 3
+	[2023-06-07 17:06:21] ---- Dao       	> update cars set power_current=? where id=?  103.124237 2
+	[2023-06-07 17:06:21] ---- Dao       	> update cars set power_current=? where id=?  102.832642 1
+	[2023-06-07 17:06:22] ---- Dao       	> update cars set power_current=? where id=?  104.889038 4
+	[2023-06-07 17:06:22] ---- Dao       	> update cars set power_current=? where id=?  104.222351 3
+	[2023-06-07 17:06:22] ---- Dao       	> update cars set power_current=? where id=?  103.138123 2
+	[2023-06-07 17:06:22] ---- Dao       	> update cars set power_current=? where id=?  102.846527 1
+	[2023-06-07 17:06:23] ---- Dao       	> update cars set power_current=? where id=?  104.916817 4
+	[2023-06-07 17:06:23] ---- Dao       	> update cars set power_current=? where id=?  104.250130 3
+	[2023-06-07 17:06:23] ---- Dao       	> update cars set power_current=? where id=?  103.152008 2
+	[2023-06-07 17:06:23] ---- Dao       	> update cars set power_current=? where id=?  102.860413 1
+	[2023-06-07 17:06:24] ---- Dao       	> update cars set power_current=? where id=?  104.944595 4
+	[2023-06-07 17:06:24] ---- Dao       	> update cars set power_current=? where id=?  104.277908 3
+	[2023-06-07 17:06:24] ---- Dao       	> update cars set power_current=? where id=?  103.165894 2
+	[2023-06-07 17:06:24] ---- Dao       	> update cars set power_current=? where id=?  102.874298 1
+	[2023-06-07 17:06:25] ---- Dao       	> update cars set power_current=? where id=?  104.972374 4
+	[2023-06-07 17:06:25] ---- Dao       	> update cars set power_current=? where id=?  104.305687 3
+	[2023-06-07 17:06:25] ---- Dao       	> update cars set power_current=? where id=?  103.179779 2
+	[2023-06-07 17:06:25] ---- Dao       	> update cars set power_current=? where id=?  102.888184 1
+	[2023-06-07 17:06:26] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:26] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:26 | 200 |     129.901µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:26] ---- Dao       	> update cars set power_current=? where id=?  105.000153 4
+	[2023-06-07 17:06:26] ---- Dao       	> update cars set power_current=? where id=?  104.333466 3
+	[2023-06-07 17:06:26] ---- Dao       	> update cars set power_current=? where id=?  103.193665 2
+	[2023-06-07 17:06:26] ---- Dao       	> update cars set power_current=? where id=?  102.902069 1
+	[2023-06-07 17:06:27] ---- Dao       	> update cars set power_current=? where id=?  105.027931 4
+	[2023-06-07 17:06:27] ---- Dao       	> update cars set power_current=? where id=?  104.361244 3
+	[2023-06-07 17:06:27] ---- Dao       	> update cars set power_current=? where id=?  103.207550 2
+	[2023-06-07 17:06:27] ---- Dao       	> update cars set power_current=? where id=?  102.915955 1
+
+Control {{0 0} [1 2] 4 2 [3 4 5] 6 4}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 1.3333338 CHARGING 0.7 0.8 0.93333375 1.0666668 1.9999992 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 104.361244}
+--id = 2 size = 1 state = WORK orders =
+   0 {18 2 4 F 100 22.5 0.5000001 CHARGING 0.7 0.8 0.35 0.4 0.75000006 2023-06-07 17:06:06 2023-06-07 17:06:08 2 2023-06-07 17:06:09 xxxx-xx-xx xx:xx:xx 3 0.00083333335 4号 0 105.02793}
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 1.5138873 CHARGING 0.7 0.8 1.059723 1.211113 2.2708337 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 102.915955}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 1.0972222 CHARGING 0.7 0.8 0.7680561 0.87777877 1.6458341 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 103.20755}
+--id = 5 size = 0 state = REST orders =
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:06:28] ---- Dao       	> update cars set power_current=? where id=?  105.055710 4
+	[2023-06-07 17:06:28] ---- Dao       	> update cars set power_current=? where id=?  104.389023 3
+	[2023-06-07 17:06:28] ---- Dao       	> update cars set power_current=? where id=?  103.221436 2
+	[2023-06-07 17:06:28] ---- Dao       	> update cars set power_current=? where id=?  102.929840 1
+	[2023-06-07 17:06:29] ---- Dao       	> update cars set power_current=? where id=?  105.083488 4
+	[2023-06-07 17:06:29] ---- Dao       	> update cars set power_current=? where id=?  104.416801 3
+	[2023-06-07 17:06:29] ---- Dao       	> update cars set power_current=? where id=?  103.235321 2
+	[2023-06-07 17:06:29] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:29] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:29 | 200 |     287.945µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:29] ---- Dao       	> update cars set power_current=? where id=?  102.943726 1
+	[2023-06-07 17:06:30] ---- Dao       	> update cars set power_current=? where id=?  105.111267 4
+	[2023-06-07 17:06:30] ---- Dao       	> update cars set power_current=? where id=?  104.444580 3
+	[2023-06-07 17:06:30] ---- Dao       	> update cars set power_current=? where id=?  103.249207 2
+	[2023-06-07 17:06:30] ---- Dao       	> update cars set power_current=? where id=?  102.957611 1
+	[2023-06-07 17:06:31] ---- Dao       	> update cars set power_current=? where id=?  105.139046 4
+	[2023-06-07 17:06:31] ---- Dao       	> update cars set power_current=? where id=?  104.472359 3
+	[2023-06-07 17:06:31] ---- Dao       	> update cars set power_current=? where id=?  103.263092 2
+	[2023-06-07 17:06:31] ---- Dao       	> update cars set power_current=? where id=?  102.971497 1
+	[2023-06-07 17:06:32] ---- Dao       	> update cars set power_current=? where id=?  105.166824 4
+	[2023-06-07 17:06:32] ---- Dao       	> update cars set power_current=? where id=?  104.500137 3
+	[2023-06-07 17:06:32] ---- Dao       	> update cars set power_current=? where id=?  103.276978 2
+	[2023-06-07 17:06:32] ---- Dao       	> update cars set power_current=? where id=?  102.985382 1
+	[2023-06-07 17:06:33] ---- Dao       	> update cars set power_current=? where id=?  105.194603 4
+	[2023-06-07 17:06:33] ---- Dao       	> update cars set power_current=? where id=?  104.527916 3
+	[2023-06-07 17:06:33] ---- Dao       	> update cars set power_current=? where id=?  103.290863 2
+	[2023-06-07 17:06:33] ---- Dao       	> update cars set power_current=? where id=?  102.999268 1
+	[2023-06-07 17:06:34] ---- Dao       	> update cars set power_current=? where id=?  105.222382 4
+	[2023-06-07 17:06:34] ---- Dao       	> update cars set power_current=? where id=?  104.555695 3
+	[2023-06-07 17:06:34] ---- Dao       	> update cars set power_current=? where id=?  103.304749 2
+	[2023-06-07 17:06:34] ---- Dao       	> update cars set power_current=? where id=?  103.013153 1
+	[2023-06-07 17:06:35] ---- Dao       	> update cars set power_current=? where id=?  105.250160 4
+	[2023-06-07 17:06:35] ---- Dao       	> update cars set power_current=? where id=?  104.583473 3
+	[2023-06-07 17:06:35] ---- Dao       	> update cars set power_current=? where id=?  103.318634 2
+	[2023-06-07 17:06:35] ---- Dao       	> update cars set power_current=? where id=?  103.027039 1
+	[2023-06-07 17:06:36] ---- Dao       	> update cars set power_current=? where id=?  105.277939 4
+	[2023-06-07 17:06:36] ---- Dao       	> update cars set power_current=? where id=?  104.611252 3
+	[2023-06-07 17:06:36] ---- Middleware	> Authentic success. ID = 2
+	[2023-06-07 17:06:36] ---- Controller	> Body: user_id=2
+	[2023-06-07 17:06:36] ---- Dao       	> insert into orders (user_id, car_id, mode, apply_kwh, charge_kwh, state, charge_price, service_price, fee, create_time, dispatch_time, charge_id, start_time, finish_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	[2023-06-07 17:06:36] ---- Service   	> Order create success
+	[2023-06-07 17:06:36] ---- Dao       	> select * from orders where user_id=? and create_time=? 2 2023-06-07 17:06:36
+	[2023-06-07 17:06:36] ---- Dao       	> update cars set power_current=? where id=?  103.332520 2
+	[2023-06-07 17:06:36] ---- Dao       	> select * from cars where id=? and user_id=? 5 2
+	[2023-06-07 17:06:36] ---- Controller	> Order create success
+[GIN] 2023/06/07 - 17:06:36 | 200 |    5.586763ms |   223.72.44.239 | POST     "/client/index/order"
+	[2023-06-07 17:06:36] ---- Dao       	> update cars set power_current=? where id=?  103.040924 1
+	[2023-06-07 17:06:37] ---- Dao       	> update cars set power_current=? where id=?  105.305717 4
+	[2023-06-07 17:06:37] ---- Dao       	> update cars set power_current=? where id=?  104.639030 3
+	[2023-06-07 17:06:37] ---- Dao       	> update cars set power_current=? where id=?  103.346405 2
+	[2023-06-07 17:06:37] ---- Dao       	> update cars set power_current=? where id=?  103.054810 1
+	[2023-06-07 17:06:38] ---- Dao       	> update orders set state=? where id=?  CHARGING 19
+	[2023-06-07 17:06:38] ---- Dao       	> update orders set dispatch_time=? where id=?  2023-06-07 17:06:38 19
+	[2023-06-07 17:06:38] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:06:38 19
+	[2023-06-07 17:06:38] ---- Dao       	> update orders set charge_id=? where id=?  5 19
+
+Control {{0 0} [1 2] 4 2 [3 4 5] 6 3}
+Charge Area
+--id = 1 size = 1 state = WORK orders =
+   0 {17 2 3 F 100 15 1.6111118 CHARGING 0.7 0.8 1.1277784 1.2888896 2.4166665 2023-06-07 17:05:37 2023-06-07 17:05:38 1 2023-06-07 17:05:39 xxxx-xx-xx xx:xx:xx 2 0.00055555557 3号 0 104.63903}
+--id = 2 size = 1 state = WORK orders =
+   0 {18 2 4 F 100 22.5 0.777778 CHARGING 0.7 0.8 0.54444444 0.62222224 1.1666666 2023-06-07 17:06:06 2023-06-07 17:06:08 2 2023-06-07 17:06:09 xxxx-xx-xx xx:xx:xx 3 0.00083333335 4号 0 105.30572}
+--id = 3 size = 1 state = WORK orders =
+   0 {15 2 1 T 50 7 1.6527756 CHARGING 0.7 0.8 1.1569453 1.3222244 2.4791663 2023-06-07 17:04:37 2023-06-07 17:04:38 3 2023-06-07 17:04:38 xxxx-xx-xx xx:xx:xx 0 0.00027777778 1号 0 103.05481}
+--id = 4 size = 1 state = WORK orders =
+   0 {16 2 2 T 50 10.5 1.2361106 CHARGING 0.7 0.8 0.8652784 0.9888902 1.8541678 2023-06-07 17:05:06 2023-06-07 17:05:08 4 2023-06-07 17:05:08 xxxx-xx-xx xx:xx:xx 1 0.00055555557 2号 0 103.346405}
+--id = 5 size = 1 state = REST orders =
+   0 {19 2 5 T 50 3.5 0 CHARGING 0.7 0.8 0 0 0 2023-06-07 17:06:36 2023-06-07 17:06:38 5 2023-06-07 17:06:38 xxxx-xx-xx xx:xx:xx 4 0.00055555557 5号 0 104.7905}
+Wait Area, FastWaitSize = 0 SlowWaitSize = 0
+
+	[2023-06-07 17:06:38] ---- Dao       	> update cars set power_current=? where id=?  105.333496 4
+	[2023-06-07 17:06:38] ---- Dao       	> update cars set power_current=? where id=?  104.666809 3
+	[2023-06-07 17:06:38] ---- Dao       	> update cars set power_current=? where id=?  103.360291 2
+	[2023-06-07 17:06:38] ---- Dao       	> update cars set power_current=? where id=?  103.068695 1
+	[2023-06-07 17:06:39] ---- Dao       	> update orders set state=? where id=?  CHARGING 19
+	[2023-06-07 17:06:39] ---- Dao       	> update orders set start_time=? where id=?  2023-06-07 17:06:39 19
+	[2023-06-07 17:06:39] ---- Dao       	> update cars set power_current=? where id=?  105.361275 4
+	[2023-06-07 17:06:39] ---- Dao       	> update cars set power_current=? where id=?  104.694588 3
+	[2023-06-07 17:06:39] ---- Dao       	> update cars set power_current=? where id=?  103.374176 2
+	[2023-06-07 17:06:39] ---- Dao       	> update cars set power_current=? where id=?  103.082581 1
+	[2023-06-07 17:06:40] ---- Dao       	> update cars set power_current=? where id=?  104.804382 5
+	[2023-06-07 17:06:40] ---- Dao       	> update cars set power_current=? where id=?  105.389053 4
+	[2023-06-07 17:06:40] ---- Dao       	> update cars set power_current=? where id=?  104.722366 3
+	[2023-06-07 17:06:40] ---- Dao       	> update cars set power_current=? where id=?  103.388062 2
+	[2023-06-07 17:06:40] ---- Dao       	> update cars set power_current=? where id=?  103.096466 1
+	[2023-06-07 17:06:41] ---- Dao       	> update cars set power_current=? where id=?  104.818268 5
+	[2023-06-07 17:06:41] ---- Dao       	> update cars set power_current=? where id=?  105.416832 4
+	[2023-06-07 17:06:41] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:41] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:41 | 200 |     188.128µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:41] ---- Dao       	> update cars set power_current=? where id=?  104.750145 3
+	[2023-06-07 17:06:41] ---- Dao       	> update cars set power_current=? where id=?  103.401947 2
+	[2023-06-07 17:06:41] ---- Dao       	> update cars set power_current=? where id=?  103.110352 1
+	[2023-06-07 17:06:42] ---- Dao       	> update cars set power_current=? where id=?  104.832153 5
+	[2023-06-07 17:06:42] ---- Dao       	> update cars set power_current=? where id=?  105.444611 4
+	[2023-06-07 17:06:42] ---- Dao       	> update cars set power_current=? where id=?  104.777924 3
+	[2023-06-07 17:06:42] ---- Dao       	> update cars set power_current=? where id=?  103.415833 2
+	[2023-06-07 17:06:42] ---- Dao       	> update cars set power_current=? where id=?  103.124237 1
+	[2023-06-07 17:06:43] ---- Dao       	> update cars set power_current=? where id=?  104.846039 5
+	[2023-06-07 17:06:43] ---- Dao       	> update cars set power_current=? where id=?  105.472389 4
+	[2023-06-07 17:06:43] ---- Dao       	> update cars set power_current=? where id=?  104.805702 3
+	[2023-06-07 17:06:43] ---- Dao       	> update cars set power_current=? where id=?  103.429718 2
+	[2023-06-07 17:06:43] ---- Dao       	> update cars set power_current=? where id=?  103.138123 1
+	[2023-06-07 17:06:44] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:44] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:44 | 200 |      158.71µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:44] ---- Dao       	> update cars set power_current=? where id=?  104.859924 5
+	[2023-06-07 17:06:44] ---- Dao       	> update cars set power_current=? where id=?  105.500168 4
+	[2023-06-07 17:06:44] ---- Dao       	> update cars set power_current=? where id=?  104.833481 3
+	[2023-06-07 17:06:44] ---- Dao       	> update cars set power_current=? where id=?  103.443604 2
+	[2023-06-07 17:06:44] ---- Dao       	> update cars set power_current=? where id=?  103.152008 1
+	[2023-06-07 17:06:45] ---- Dao       	> update cars set power_current=? where id=?  104.873810 5
+	[2023-06-07 17:06:45] ---- Dao       	> update cars set power_current=? where id=?  105.527946 4
+	[2023-06-07 17:06:45] ---- Dao       	> update cars set power_current=? where id=?  104.861259 3
+	[2023-06-07 17:06:45] ---- Dao       	> update cars set power_current=? where id=?  103.457489 2
+	[2023-06-07 17:06:45] ---- Dao       	> update cars set power_current=? where id=?  103.165894 1
+	[2023-06-07 17:06:46] ---- Dao       	> update cars set power_current=? where id=?  104.887695 5
+	[2023-06-07 17:06:46] ---- Dao       	> update cars set power_current=? where id=?  105.555725 4
+	[2023-06-07 17:06:46] ---- Dao       	> update cars set power_current=? where id=?  104.889038 3
+	[2023-06-07 17:06:46] ---- Dao       	> update cars set power_current=? where id=?  103.471375 2
+	[2023-06-07 17:06:46] ---- Dao       	> update cars set power_current=? where id=?  103.179779 1
+	[2023-06-07 17:06:47] ---- Dao       	> update cars set power_current=? where id=?  104.901581 5
+	[2023-06-07 17:06:47] ---- Dao       	> update cars set power_current=? where id=?  105.583504 4
+	[2023-06-07 17:06:47] ---- Dao       	> update cars set power_current=? where id=?  104.916817 3
+	[2023-06-07 17:06:47] ---- Dao       	> update cars set power_current=? where id=?  103.485260 2
+	[2023-06-07 17:06:47] ---- Middleware	> Authentic success. ID = 1
+	[2023-06-07 17:06:47] ---- Controller	> Body: user_id=1
+[GIN] 2023/06/07 - 17:06:47 | 200 |     174.885µs |       127.0.0.1 | GET      "/admin/index/manage"
+	[2023-06-07 17:06:47] ---- Dao       	> update cars set power_current=? where id=?  103.193665 1
